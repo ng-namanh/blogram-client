@@ -49,6 +49,7 @@ function RegisterFormPage() {
 
   function onSubmit(values: z.infer<typeof signupFormSchema>) {
     console.log(values)
+    form.reset()
   }
 
   return (
