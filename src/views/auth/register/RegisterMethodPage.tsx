@@ -4,7 +4,7 @@ import { Github, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 function RegisterMethodPage() {
   return (
-    <div className=' min-h-screen max-w-screen-sm mx-auto my-auto flex items-center justify-center flex-col md:p-12 '>
+    <div className='mx-auto my-0 flex items-center justify-center flex-col'>
       <div className='flex justify-center items-center flex-col'>
         <img src={logo} alt='logo' className=' w-[60px]' />
         <h1 className='text-center font-bold text-2xl md:text-3xl mt-4'>
@@ -19,7 +19,7 @@ function RegisterMethodPage() {
           <Github />
           <span className='flex-1 text-lg'>Sign up with Github</span>
         </Button>
-        <Link to='/email_signup'>
+        <Link to='/auth/email_signup'>
           <Button variant='outline' className='w-full'>
             <Mail />
             <span className='flex-1 text-lg'>Sign up with Email</span>
@@ -29,7 +29,7 @@ function RegisterMethodPage() {
       <div className='mt-6 border-t w-full text-center pt-8'>
         <p>
           Already have an account?
-          <Link to='/login' className='text-[#3b49df]'>
+          <Link to='/auth/login' className='text-[#3b49df] ml-1'>
             Log in.
           </Link>
         </p>

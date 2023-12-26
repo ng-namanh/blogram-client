@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -11,32 +10,10 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-
-const signupFormSchema = z
-  .object({
-    name: z.string().min(2, {
-      message: 'Name must be at least 2 characters.'
-    }),
-    username: z.string().min(2, {
-      message: 'Username must be at least 2 characters.'
-    }),
-    email: z
-      .string({
-        required_error: 'Please select an email to display.'
-      })
-      .email(),
-    password: z.string().min(6, {
-      message: 'Password must be at least 6 characters.'
-    }),
-    confirmPassword: z.string()
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ['confirmPassword']
-  })
+import { SignupForm, signupFormSchema } from '@/types/auth'
 
 function RegisterFormPage() {
-  const form = useForm<z.infer<typeof signupFormSchema>>({
+  const form = useForm<SignupForm>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
       name: '',
@@ -47,13 +24,13 @@ function RegisterFormPage() {
     }
   })
 
-  function onSubmit(values: z.infer<typeof signupFormSchema>) {
+  function onSubmit(values: SignupForm) {
     console.log(values)
     form.reset()
   }
 
   return (
-    <div className='min-h-screen max-w-screen-sm mx-auto my-auto flex items-start justify-center flex-col p-12'>
+    <div className='flex items-start justify-center flex-col w-full'>
       <h1 className='font-bold mb-8 text-2xl'>Create your account</h1>
       <Form {...form}>
         <form
