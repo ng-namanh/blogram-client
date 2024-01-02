@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { SignupForm, signupFormSchema } from '@/types/auth'
+import { registerUser } from '@/services/api'
 
 function RegisterFormPage() {
   const form = useForm<SignupForm>({
@@ -25,7 +26,7 @@ function RegisterFormPage() {
   })
 
   function onSubmit(values: SignupForm) {
-    console.log(values)
+    registerUser(values)
     form.reset()
   }
 
