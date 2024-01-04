@@ -12,8 +12,12 @@ import {
 import { Input } from '@/components/ui/input'
 import { SignupForm, signupFormSchema } from '@/types/auth'
 import { registerUser } from '@/services/api'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
-function RegisterFormPage() {
+export default function RegisterFormPage() {
+  const [isRegistered, setIsRegistered] = useState(false)
+
   const form = useForm<SignupForm>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -26,8 +30,25 @@ function RegisterFormPage() {
   })
 
   function onSubmit(values: SignupForm) {
-    registerUser(values).then((response) => console.log(response))
+    registerUser(values).then((response) => {
+      if (response.success === true) {
+        setIsRegistered(true)
+      }
+    })
     form.reset()
+  }
+
+  function RegisterToast(): JSX.Element {
+    return (
+      <div className='flex justify-center items-center w-full text-center py-2 mt-4 bg-green-500 rounded-sm text-secondary'>
+        <p>
+          Register successfully!
+          <Link to='/auth/login' className='text-[#3b49df] ml-1'>
+            Click here to log in.
+          </Link>
+        </p>
+      </div>
+    )
   }
 
   return (
@@ -110,8 +131,7 @@ function RegisterFormPage() {
           <Button type='submit'>Sign up</Button>
         </form>
       </Form>
+      {isRegistered && <RegisterToast />}
     </div>
   )
 }
-
-export default RegisterFormPage
