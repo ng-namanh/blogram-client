@@ -1,19 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Form, Button } from '@/components/ui'
 import { SignupForm, signupFormSchema } from '@/types/auth'
 import { registerUser } from '@/services/api'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import FormFieldWrapper from '@/components/shared/FormFieldWrapper'
 
 export default function RegisterFormPage() {
   const [isRegistered, setIsRegistered] = useState(false)
@@ -59,75 +51,42 @@ export default function RegisterFormPage() {
           onSubmit={form.handleSubmit(onSubmit)}
           className='space-y-4 w-full'
         >
-          <FormField
-            control={form.control}
+          <FormFieldWrapper
             name='name'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-base'>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder='name' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
+            label='Name'
             control={form.control}
+            placeholder='name'
+            type='text'
+          />
+          <FormFieldWrapper
             name='username'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-base'>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder='username' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
+            label='Username'
             control={form.control}
+            placeholder='username'
+            type='text'
+          />
+          <FormFieldWrapper
             name='email'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-base'>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder='email' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
+            label='Email'
             control={form.control}
+            placeholder='Email'
+            type='text'
+          />
+          <FormFieldWrapper
             name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-base'>Password</FormLabel>
-                <FormControl>
-                  <Input type='password' placeholder='password' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
+            label='Password'
             control={form.control}
-            name='confirmPassword'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-base'>Confirm Password</FormLabel>
-                <FormControl>
-                  <Input
-                    type='password'
-                    placeholder='confirm password'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder='password'
+            type='password'
           />
+          <FormFieldWrapper
+            name='confirmPassword'
+            label='Confirm Password'
+            control={form.control}
+            placeholder='confirm password'
+            type='password'
+          />
+
           <Button type='submit'>Sign up</Button>
         </form>
       </Form>

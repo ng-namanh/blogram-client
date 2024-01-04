@@ -1,20 +1,13 @@
 import logo from '@/assets/logo.png'
-import { Button } from '@/components/ui/button'
 import { Github } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Form, Button } from '@/components/ui'
 import { LoginForm, loginFormSchema } from '@/types/auth'
 import { loginUser } from '@/services/api'
+import FormFieldWrapper from '@/components/shared/FormFieldWrapper'
+
 function LoginFormPage() {
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginFormSchema),
@@ -57,31 +50,19 @@ function LoginFormPage() {
           onSubmit={form.handleSubmit(onSubmit)}
           className='space-y-4 w-full'
         >
-          <FormField
-            control={form.control}
+          <FormFieldWrapper
             name='email'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-base'>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder='email' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
+            label='Email'
             control={form.control}
+            placeholder='email'
+            type='email'
+          />
+          <FormFieldWrapper
             name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className='text-base'>Password</FormLabel>
-                <FormControl>
-                  <Input type='password' placeholder='password' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label='Password'
+            control={form.control}
+            placeholder='password'
+            type='password'
           />
           <Button type='submit' className='w-full'>
             Login
