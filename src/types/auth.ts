@@ -36,3 +36,8 @@ export const loginFormSchema = z.object({
 
 export type LoginForm = z.infer<typeof loginFormSchema>
 export type SignupForm = z.infer<typeof signupFormSchema>
+
+export type ReturnMessage = {
+  success: boolean
+  message: string
+}

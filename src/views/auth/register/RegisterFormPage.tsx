@@ -26,7 +26,7 @@ function RegisterFormPage() {
   })
 
   function onSubmit(values: SignupForm) {
-    registerUser(values)
+    registerUser(values).then((response) => console.log(response))
     form.reset()
   }
 
