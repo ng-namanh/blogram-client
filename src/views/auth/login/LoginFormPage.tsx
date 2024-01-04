@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { LoginForm, loginFormSchema } from '@/types/auth'
+import { loginUser } from '@/services/api'
 function LoginFormPage() {
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginFormSchema),
@@ -24,6 +25,7 @@ function LoginFormPage() {
   })
 
   function onSubmit(values: LoginForm) {
+    loginUser(values)
     console.log(values)
     form.reset()
   }
