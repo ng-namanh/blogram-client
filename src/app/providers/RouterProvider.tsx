@@ -3,6 +3,8 @@ import LoginFormPage from '@/pages/auth/login/LoginFormPage'
 import RegisterFormPage from '@/pages/auth/register/RegisterFormPage'
 import RegisterMethodPage from '@/pages/auth/register/RegisterMethodPage'
 import { createBrowserRouter } from 'react-router-dom'
+import { baseLayoyt } from './BaseLayout'
+import HomePage from '@/pages/auth/home/HomePage'
 
 export const route = createBrowserRouter([
   {
@@ -19,6 +21,15 @@ export const route = createBrowserRouter([
       {
         path: '/auth/login',
         element: <LoginFormPage />
+      }
+    ]
+  },
+  {
+    element: baseLayoyt,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />
       }
     ]
   }
