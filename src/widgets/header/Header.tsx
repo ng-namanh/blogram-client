@@ -1,4 +1,32 @@
+import logo from '@/shared/assets/logo.png'
+import { Button, Input } from '@/shared/ui'
+import { SearchIcon } from 'lucide-react'
+
 function Header() {
-  return <div>Header</div>
+  return (
+    <div className='border-b shadow-sm w-full'>
+      <div className='max-w-screen-sm lg:max-w-[1240px] mx-auto my-auto py-2 flex'>
+        <div className='flex gap-2 items-center justify-center'>
+          <img src={logo} alt='' width={50} height={200} />
+          <Input
+            className=' w-[400px]'
+            placeholder='Search...'
+            Slot={
+              <Button
+                variant='ghost'
+                className='px-2 py-0 my-0 h-9 bg-transparent scale-4'
+              >
+                <SearchIcon size={20} />
+              </Button>
+            }
+          />
+        </div>
+        <div className='flex flex-1 items-end justify-end'>
+          <Button variant='ghost'>Login</Button>
+          <Button variant='outline'>Create account</Button>
+        </div>
+      </div>
+    </div>
+  )
 }
 export default Header

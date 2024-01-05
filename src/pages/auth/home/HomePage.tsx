@@ -1,4 +1,4 @@
 function HomePage() {
-  return <div className='flex-1'>HomePage</div>
+  return <div className=''>HomePage</div>
 }
 export default HomePage

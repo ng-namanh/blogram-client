@@ -8,6 +8,15 @@ import HomePage from '@/pages/auth/home/HomePage'
 
 export const route = createBrowserRouter([
   {
+    element: baseLayoyt,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />
+      }
+    ]
+  },
+  {
     element: <AuthLayout />,
     children: [
       {
@@ -21,15 +30,6 @@ export const route = createBrowserRouter([
       {
         path: '/auth/login',
         element: <LoginFormPage />
-      }
-    ]
-  },
-  {
-    element: baseLayoyt,
-    children: [
-      {
-        path: '/',
-        element: <HomePage />
       }
     ]
   }

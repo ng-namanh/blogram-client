@@ -7,9 +7,11 @@ type Props = {
 
 function Layout(props: Props) {
   return (
-    <div className='min-h-screen max-w-screen-sm mx-auto my-auto flex items-start justify-center flex-col'>
+    <div className='min-h-screen flex items-start justify-center flex-col'>
       {props.headerSlot}
-      <Outlet />
+      <div className='max-w-screen-sm lg:max-w-screen-lg mx-auto my-0 flex-1'>
+        <Outlet />
+      </div>
     </div>
   )
 }
