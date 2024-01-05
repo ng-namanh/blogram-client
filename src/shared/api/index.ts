@@ -21,18 +21,6 @@ export const registerUser = async (userData: User): Promise<ReturnMessage> => {
     }
   }
 }
-// export const registerUser = async (userData: User) => {
-//   try {
-//     const response = await apiClient.post('/auth/register', userData)
-//     return response.data
-//   } catch (error) {
-//     if (axios.isAxiosError(error)) {
-//       throw error
-//     } else {
-//       throw new Error('An unexpected error occurred')
-//     }
-//   }
-// }
 
 export const loginUser = async (userCredentials: UserCredentials) => {
   try {
