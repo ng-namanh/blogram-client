@@ -33,11 +33,3 @@ export const loginFormSchema = z.object({
     message: 'Password must be at least 6 characters.'
   })
 })
-
-export type LoginForm = z.infer<typeof loginFormSchema>
-export type SignupForm = z.infer<typeof signupFormSchema>
-
-export type ReturnMessage = {
-  success: boolean
-  message: string
-}

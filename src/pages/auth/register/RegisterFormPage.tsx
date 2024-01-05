@@ -1,11 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Form, Button } from '@/components/ui'
-import { SignupForm, signupFormSchema } from '@/types/auth'
-import { registerUser } from '@/services/api'
+import { Form, Button } from '@/shared/ui'
+import { registerUser } from '@/shared/api'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import FormFieldWrapper from '@/components/shared/FormFieldWrapper'
+import FormFieldWrapper from '@/widgets/authentication/FormFieldWrapper'
+import { signupFormSchema } from '@/entities/auth/model/schema'
+import { SignupForm } from '@/entities/auth/model/types'
 
 export default function RegisterFormPage() {
   const [isRegistered, setIsRegistered] = useState(false)

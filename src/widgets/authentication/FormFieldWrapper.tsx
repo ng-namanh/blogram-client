@@ -5,7 +5,7 @@ import {
   FormControl,
   FormMessage,
   Input
-} from '@/components/ui'
+} from '@/shared/ui'
 import { Control, FieldValues, Path } from 'react-hook-form'
 
 type FormFieldWrapperProps<TFieldValues extends FieldValues = FieldValues> = {

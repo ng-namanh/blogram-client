@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
-import logo from '@/assets/logo.png'
+import { Button } from '@/shared/ui/button'
+import logo from '@/shared/assets/logo.png'
 import { Github, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 function RegisterMethodPage() {

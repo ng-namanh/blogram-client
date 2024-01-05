@@ -1,7 +1,7 @@
-import AuthLayout from '@/components/layouts/AuthLayout'
-import LoginFormPage from '@/views/auth/login/LoginFormPage'
-import RegisterFormPage from '@/views/auth/register/RegisterFormPage'
-import RegisterMethodPage from '@/views/auth/register/RegisterMethodPage'
+import AuthLayout from '@/shared/ui/layouts/AuthLayout'
+import LoginFormPage from '@/pages/auth/login/LoginFormPage'
+import RegisterFormPage from '@/pages/auth/register/RegisterFormPage'
+import RegisterMethodPage from '@/pages/auth/register/RegisterMethodPage'
 import { createBrowserRouter } from 'react-router-dom'
 
 export const route = createBrowserRouter([

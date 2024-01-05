@@ -1,5 +1,5 @@
-import { ReturnMessage } from '@/types/auth'
-import { User, UserCredentials } from '@/types/user'
+import { ReturnMessage } from '@/entities/auth/model/types'
+import { User, UserCredentials } from '@/entities/user/model/types'
 import axios from 'axios'
 
 const apiClient = axios.create({

@@ -1,12 +1,13 @@
-import logo from '@/assets/logo.png'
+import logo from '@/shared/assets/logo.png'
 import { Github } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Form, Button } from '@/components/ui'
-import { LoginForm, loginFormSchema } from '@/types/auth'
-import { loginUser } from '@/services/api'
-import FormFieldWrapper from '@/components/shared/FormFieldWrapper'
+import { Form, Button } from '@/shared/ui'
+import { loginUser } from '@/shared/api'
+import FormFieldWrapper from '@/widgets/authentication/FormFieldWrapper'
+import { loginFormSchema } from '@/entities/auth/model/schema'
+import { LoginForm } from '@/entities/auth/model/types'
 
 function LoginFormPage() {
   const form = useForm<LoginForm>({
