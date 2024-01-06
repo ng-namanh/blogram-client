@@ -1,19 +1,11 @@
 import { Button } from '@/shared/ui/button'
-import logo from '@/shared/assets/logo.png'
+import AuthHeader from '@/widgets/authentication/Header'
 import { Github, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 function RegisterMethodPage() {
   return (
     <div className='mx-auto my-0 flex items-center justify-center flex-col'>
-      <div className='flex justify-center items-center flex-col'>
-        <img src={logo} alt='logo' className=' w-[60px]' />
-        <h1 className='text-center font-bold text-2xl md:text-3xl mt-4'>
-          Join the DEV Community
-        </h1>
-        <p className='text-center mt-2'>
-          DEV Community is a community of 1,218,824 amazing developers
-        </p>
-      </div>
+      <AuthHeader />
       <div className='w-full flex flex-col gap-4 mt-8'>
         <Button variant='outline' className='w-full'>
           <Github />
