@@ -19,7 +19,9 @@ function LoginFormPage() {
   })
 
   function onSubmit(values: LoginForm) {
-    loginUser(values)
+    loginUser(values).then((response) => {
+      console.log(response)
+    })
     console.log(values)
     form.reset()
   }
