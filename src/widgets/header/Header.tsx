@@ -1,6 +1,7 @@
 import logo from '@/shared/assets/logo.png'
 import { Button, Input } from '@/shared/ui'
-import { SearchIcon } from 'lucide-react'
+import { SearchIcon, BellIcon, UserIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
@@ -21,9 +22,22 @@ function Header() {
             }
           />
         </div>
-        <div className='flex flex-1 items-end justify-end'>
-          <Button variant='ghost'>Login</Button>
-          <Button variant='outline'>Create account</Button>
+        {/* <div className='flex flex-1 items-end justify-end'>
+          <Link to='/auth/login'>
+            <Button variant='ghost'>Log in</Button>
+          </Link>
+          <Link to='/auth/register'>
+            <Button variant='outline'>Create account</Button>
+          </Link>
+        </div> */}
+        <div className='flex flex-1 items-end justify-end gap-3'>
+          <Button variant='outline'>Create Post</Button>
+          <Button variant='ghost' className='p-2'>
+            <BellIcon />
+          </Button>
+          <Button variant='ghost'>
+            <UserIcon />
+          </Button>
         </div>
       </div>
     </div>
