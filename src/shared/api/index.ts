@@ -1,9 +1,10 @@
 import { ReturnMessage } from '@/entities/auth/model/types'
 import { User, UserCredentials } from '@/entities/user/model/types'
 import axios from 'axios'
+import { config } from '../lib/config'
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL
+  baseURL: config.API_ENDPOINT
 })
 
 export const registerUser = async (userData: User): Promise<ReturnMessage> => {
