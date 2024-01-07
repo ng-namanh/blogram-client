@@ -1,3 +1,5 @@
+//Should define in feature/auth/login and feature/auth/register
+
 import * as z from 'zod'
 
 export const signupFormSchema = z
