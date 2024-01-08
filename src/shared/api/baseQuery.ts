@@ -5,8 +5,9 @@ import { RootState } from '@/app/appStore'
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: config.API_ENDPOINT,
+  credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).jwtSession.accessToken
+    const token = (getState() as RootState).auth.accessToken
 
     if (token) {
       headers.set('authorization', `Bearer ${token}`)

@@ -1,8 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { jwtSessionSlice } from '@/entities/auth/model/slice'
+import { authSlice } from '@/entities/auth/model/slice'
+import { baseApi } from '@/shared/api/baseApi'
 
 const rootReducer = combineReducers({
-  [jwtSessionSlice.name]: jwtSessionSlice.reducer
+  [authSlice.name]: authSlice.reducer,
+  [baseApi.reducerPath]: baseApi.reducer
 })
 
 export default rootReducer

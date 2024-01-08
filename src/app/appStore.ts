@@ -1,8 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
-import { persistReducer, persistStore } from 'redux-persist'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'redux-persist'
 import rootReducer from './rootReducer'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import { baseApi } from '@/shared/api/baseApi'
 
 const persistConfig = {
   storage,
@@ -15,9 +25,13 @@ export function makeStore() {
       persistConfig,
       rootReducer
     ) as unknown as typeof rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({})
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+        }
+      }).concat(baseApi.middleware)
   })
-
   setupListeners(store.dispatch)
 
   return store

@@ -1,7 +1,7 @@
 import { RootState } from '@/app/appStore'
 import { createSlice } from '@reduxjs/toolkit'
-import { jwtApi } from '@/entities/auth/api/jwtApi'
-type JwtSessionSliceState =
+import { authApiSlice } from '@/entities/auth/api/authApi'
+type AuthSliceState =
   | {
       accessToken: string | null
       userId: number
@@ -10,27 +10,35 @@ type JwtSessionSliceState =
   | {
       isAuthorized: false
       accessToken?: string | null
-      userId?: number
+      userId?: number | null
     }
 
-const initialState: JwtSessionSliceState = {
+const initialState: AuthSliceState = {
   isAuthorized: false
 }
 
-export const jwtSessionSlice = createSlice({
-  name: 'jwtSession',
+export const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
-    clearToken: (state) => {
-      state.accessToken = undefined
-      state.userId = undefined
+    logout: (state) => {
+      state.accessToken = null
+      state.userId = null
       state.isAuthorized = false
+    },
+    setCredentials: (state, action) => {
+      const { accessToken, userId } = action.payload
+      if (accessToken && userId) {
+        state.accessToken = accessToken
+        state.userId = userId
+        // state.isAuthorized = true
+      }
     }
   },
   extraReducers: (builder) => {
     builder.addMatcher(
-      jwtApi.endpoints.login.matchFulfilled,
-      (state: JwtSessionSliceState, { payload }) => {
+      authApiSlice.endpoints.login.matchFulfilled,
+      (state: AuthSliceState, { payload }) => {
         state.isAuthorized = true
 
         if (state.isAuthorized) {
@@ -43,9 +51,9 @@ export const jwtSessionSlice = createSlice({
 })
 
 export const selectIsAuthorized = (state: RootState) => {
-  return state.jwtSession.isAuthorized
+  return state.auth.isAuthorized
 }
 
-export const selectUserId = (state: RootState) => state.jwtSession.userId
+export const selectUserId = (state: RootState) => state.auth.userId
 
-export const { clearToken } = jwtSessionSlice.actions
+export const { logout, setCredentials } = authSlice.actions
