@@ -8,3 +8,13 @@ export type ReturnMessage = {
   success: boolean
   message: string
 }
+
+export type User = {
+  id: number
+  email: string
+}
+
+export type Session = {
+  userId: number
+  accessToken: string
+}

@@ -6,11 +6,11 @@ import { Form, Button } from '@/shared/ui'
 import { loginUser } from '@/shared/api'
 import FormFieldWrapper from '@/widgets/authentication/FormFieldWrapper'
 import { loginFormSchema } from '@/entities/auth/model/schema'
-import { LoginForm } from '@/entities/auth/model/types'
+import { RequestLoginBody } from '@/entities/auth/api/types'
 import AuthHeader from '@/widgets/authentication/Header'
 
 function LoginFormPage() {
-  const form = useForm<LoginForm>({
+  const form = useForm<RequestLoginBody>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: '',
@@ -18,7 +18,7 @@ function LoginFormPage() {
     }
   })
 
-  function onSubmit(values: LoginForm) {
+  function onSubmit(values: RequestLoginBody) {
     loginUser(values).then((response) => {
       console.log(response)
     })
