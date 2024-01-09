@@ -1,13 +1,17 @@
 import { Github } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Form, Button } from '@/shared/ui'
-import { loginUser } from '@/shared/api'
 import FormFieldWrapper from '@/widgets/authentication/FormFieldWrapper'
 import { loginFormSchema } from '@/entities/auth/model/schema'
 import { RequestLoginBody } from '@/entities/auth/api/types'
 import AuthHeader from '@/widgets/authentication/Header'
+import { useLoginMutation } from '@/entities/auth/api/authApi'
+import { setCredentials } from '@/entities/auth/model/slice'
+import { useAppDispatch } from '@/shared/model/hook'
+import { useToast } from '@/shared/ui/use-toast'
+import { Toaster } from '@/shared/ui/toaster'
 
 function LoginFormPage() {
   const form = useForm<RequestLoginBody>({
@@ -17,14 +21,25 @@ function LoginFormPage() {
       password: ''
     }
   })
+  const [login, { isSuccess, error }] = useLoginMutation()
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const { toast } = useToast()
 
-  function onSubmit(values: RequestLoginBody) {
-    loginUser(values).then((response) => {
-      console.log(response)
-    })
-    console.log(values)
-    form.reset()
+  async function onSubmit(values: RequestLoginBody) {
+    try {
+      const userData = await login(values).unwrap()
+      dispatch(setCredentials({ ...userData, values }))
+      console.log(userData, isSuccess, error)
+      form.reset()
+      navigate('/')
+    } catch (error: unknown) {
+      toast({
+        title: 'Wrong username or password'
+      })
+    }
   }
+
   return (
     <div className='mx-auto'>
       <div className='flex justify-center items-center flex-col'>
@@ -64,6 +79,7 @@ function LoginFormPage() {
           </Button>
         </form>
       </Form>
+      <Toaster />
       <div className='mt-6 border-t w-full text-center pt-8'>
         <p>
           New to DEV Community?
