@@ -1,19 +1,19 @@
 import { baseApi } from '@/shared/api/baseApi'
-import { Session } from '../model/types'
-import { RequestLoginBody, SessionDto } from './types'
+import { AuthCredentials } from '../model/types'
+import { RequestLoginBody, AuthCredentialsDto } from './types'
 import { mapSession } from '../lib/mapSession'
-// import { SESSION_TAG } from '@/shared/api/tags'
+import { SESSION_TAG } from '@/shared/api/tags'
 
 export const authApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<Session, RequestLoginBody>({
+    login: builder.mutation<AuthCredentials, RequestLoginBody>({
       query: (body) => ({
         url: 'auth/login',
         method: 'post',
         body
       }),
-      // invalidatesTags: [SESSION_TAG],
-      transformResponse: (response: SessionDto) => mapSession(response)
+      invalidatesTags: [SESSION_TAG],
+      transformResponse: (response: AuthCredentialsDto) => mapSession(response)
     })
   })
 })

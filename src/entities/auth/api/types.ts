@@ -1,6 +1,6 @@
 import { User } from '../model/types'
 
-export type SessionDto = {
+export type AuthCredentialsDto = {
   accessToken: string
   user: User
 }
