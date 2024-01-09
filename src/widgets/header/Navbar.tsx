@@ -1,20 +1,20 @@
-import logo from '@/shared/assets/logo.png'
 import { Button, Input } from '@/shared/ui'
 import { SearchIcon, BellIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { DropdownMenuHeader } from './Dropdown'
 import { useAppSelector } from '@/shared/model/hook'
+import Logo from '@/shared/ui/logo/Logo'
+import { selectedUser } from '@/entities/auth/model/slice'
 
 function Header() {
-  const token = useAppSelector((state) => state.auth.accessToken)
-  const user = useAppSelector((state) => state.auth.userId)
-  console.log(token, user)
+  // const token = useAppSelector((state) => state.auth.accessToken)
+  const user = useAppSelector(selectedUser)
 
   return (
     <div className='border-b shadow-sm w-full'>
       <div className='max-w-screen-sm lg:max-w-[1240px] mx-auto my-auto py-2 flex'>
         <div className='flex gap-2 items-center justify-center'>
-          <img src={logo} alt='' width={50} height={200} />
+          <Logo width={50} />
           <Input
             className=' w-[400px]'
             placeholder='Search...'

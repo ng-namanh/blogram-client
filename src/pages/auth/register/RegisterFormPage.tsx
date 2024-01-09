@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Form, Button } from '@/shared/ui'
-import { registerUser } from '@/shared/api'
+import { createUser } from '@/shared/api'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import FormFieldWrapper from '@/widgets/authentication/FormFieldWrapper'
@@ -23,7 +23,7 @@ export default function RegisterFormPage() {
   })
 
   function onSubmit(values: SignupForm) {
-    registerUser(values).then((response) => {
+    createUser(values).then((response) => {
       if (response.success === true) {
         setIsRegistered(true)
       }
