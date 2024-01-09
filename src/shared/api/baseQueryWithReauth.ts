@@ -24,14 +24,27 @@ export async function baseQueryWithReauth(
   ) {
     // send refresh token request
     console.log('sending refresh token')
-    const refreshResult = await baseQuery('/auth/refresh', api, extraOptions)
-    console.log(refreshResult)
-    if (refreshResult?.data) {
-      const userId = (api.getState() as RootState).auth.userId
-      api.dispatch(setCredentials({ ...refreshResult.data, userId }))
-      result = await baseQuery(args, api, extraOptions)
-    } else {
-      api.dispatch(logout())
+
+    const user = (api.getState() as RootState).auth.user
+
+    if (user) {
+      console.log('user is not logged in')
+
+      const refreshArgs: FetchArgs = {
+        url: '/auth/refresh',
+        method: 'POST',
+        body: user
+      }
+
+      const refreshResult = await baseQuery(refreshArgs, api, extraOptions)
+      console.log(refreshResult)
+
+      if (refreshResult?.data) {
+        api.dispatch(setCredentials({ ...refreshResult.data, user }))
+        result = await baseQuery(args, api, extraOptions)
+      } else {
+        api.dispatch(logout())
+      }
     }
   }
 
