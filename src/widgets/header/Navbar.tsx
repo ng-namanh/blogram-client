@@ -5,7 +5,7 @@ import { DropdownMenuHeader } from './Dropdown'
 import { useAppSelector } from '@/shared/model/hook'
 import Logo from '@/shared/ui/logo/Logo'
 import { selectedUser } from '@/entities/auth/model/slice'
-import HeaderInput from './Input'
+import HeaderSearchInput from './Input'
 import MobileDrawer from './MobileDrawer'
 import { useState } from 'react'
 
@@ -28,18 +28,19 @@ function Header() {
           />
 
           <Logo width={50} />
-          <HeaderInput />
+          <HeaderSearchInput />
         </div>
         {isOpen && <MobileDrawer setIsOpen={setIsOpen} />}
         {user ? (
           <div className='flex flex-1 items-end justify-end gap-3'>
-            <Button variant='outline' className='hidden md:block'>
-              Create Post
-            </Button>
+            <Link to='/new'>
+              <Button variant='outline' className='hidden md:block'>
+                Create Post
+              </Button>
+            </Link>
             <Button variant='ghost' className='p-2'>
               <BellIcon />
             </Button>
-
             <DropdownMenuHeader />
           </div>
         ) : (

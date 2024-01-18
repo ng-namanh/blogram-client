@@ -1,7 +1,7 @@
 import { Button, Input } from '@/shared/ui'
 import { SearchIcon } from 'lucide-react'
 
-function HeaderInput() {
+function HeaderSearchInput() {
   return (
     <Input
       className='hidden md:block lg:w-[400px]'
@@ -17,4 +17,4 @@ function HeaderInput() {
     />
   )
 }
-export default HeaderInput
+export default HeaderSearchInput
