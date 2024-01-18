@@ -1,7 +1,7 @@
 // import AuthLayout from '@/shared/ui/layouts/AuthLayout'
 import RegisterMethodPage from '@/pages/auth/register/RegisterMethodPage'
 import { createBrowserRouter } from 'react-router-dom'
-import { authLayout, defaultLayout } from './BaseLayout'
+import { authLayout, defaultLayout } from './LayoutProvider'
 import HomePage from '@/pages/home/HomePage'
 import LoginFormPage from '@/pages/auth/login/Page'
 import RegisterPage from '@/pages/auth/register/RegisterPage'
