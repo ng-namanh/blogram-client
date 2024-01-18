@@ -5,6 +5,7 @@ import { authLayout, defaultLayout } from './LayoutProvider'
 import HomePage from '@/pages/home/HomePage'
 import LoginFormPage from '@/pages/auth/login/Page'
 import RegisterPage from '@/pages/auth/register/RegisterPage'
+import { NewPostPage } from '@/pages/new-post'
 
 export const route = createBrowserRouter([
   {
@@ -30,6 +31,15 @@ export const route = createBrowserRouter([
       {
         path: '/auth/login',
         element: <LoginFormPage />
+      }
+    ]
+  },
+  {
+    element: authLayout,
+    children: [
+      {
+        path: '/new',
+        element: <NewPostPage />
       }
     ]
   }
