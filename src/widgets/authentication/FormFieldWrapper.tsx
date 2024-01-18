@@ -16,7 +16,7 @@ type FormFieldWrapperProps<TFieldValues extends FieldValues = FieldValues> = {
   control?: Control<TFieldValues>
 }
 
-export default function FormFieldWrapper<
+export function FormFieldWrapper<
   TFieldValues extends FieldValues = FieldValues
 >({
   name,

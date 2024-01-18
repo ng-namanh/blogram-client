@@ -1,6 +1,6 @@
 import Logo from '@/shared/ui/logo/Logo'
 
-function AuthHeader() {
+export function AuthHeader() {
   return (
     <div className='flex justify-center items-center flex-col'>
       <Logo width={100} />
@@ -13,4 +13,3 @@ function AuthHeader() {
     </div>
   )
 }
-export default AuthHeader

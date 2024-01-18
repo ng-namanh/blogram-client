@@ -1,10 +1,10 @@
 import AuthLayout from '@/shared/ui/layouts/AuthLayout'
-import LoginFormPage from '@/pages/auth/login/LoginFormPage'
-import RegisterFormPage from '@/pages/auth/register/RegisterFormPage'
 import RegisterMethodPage from '@/pages/auth/register/RegisterMethodPage'
 import { createBrowserRouter } from 'react-router-dom'
 import { baseLayoyt } from './BaseLayout'
-import HomePage from '@/pages/auth/home/HomePage'
+import HomePage from '@/pages/home/HomePage'
+import LoginFormPage from '@/pages/auth/login/Page'
+import RegisterPage from '@/pages/auth/register/RegisterPage'
 
 export const route = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ export const route = createBrowserRouter([
       },
       {
         path: '/auth/email_signup',
-        element: <RegisterFormPage />
+        element: <RegisterPage />
       },
       {
         path: '/auth/login',

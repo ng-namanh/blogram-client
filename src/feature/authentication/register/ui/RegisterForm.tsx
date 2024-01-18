@@ -2,13 +2,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Form, Button } from '@/shared/ui'
 import { createUser } from '@/shared/api'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import FormFieldWrapper from '@/widgets/authentication/FormFieldWrapper'
-import { signupFormSchema } from '@/entities/auth/model/schema'
-import { SignupForm } from '@/entities/auth/model/types'
+import { FormFieldWrapper } from '@/widgets/authentication/'
+import {
+  SignupForm,
+  signupFormSchema
+} from '@/feature/authentication/register/model/registerSchema'
+import { RegisterToast } from '@/widgets/authentication'
 
-export default function RegisterFormPage() {
+export default function RegisterForm() {
   const [isRegistered, setIsRegistered] = useState(false)
 
   const form = useForm<SignupForm>({
@@ -29,19 +31,6 @@ export default function RegisterFormPage() {
       }
     })
     form.reset()
-  }
-
-  function RegisterToast(): JSX.Element {
-    return (
-      <div className='flex justify-center items-center w-full text-center py-2 mt-4 bg-green-500 rounded-sm text-secondary'>
-        <p>
-          Register successfully!
-          <Link to='/auth/login' className='text-[#3b49df] ml-1'>
-            Click here to log in.
-          </Link>
-        </p>
-      </div>
-    )
   }
 
   return (

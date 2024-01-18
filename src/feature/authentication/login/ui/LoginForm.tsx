@@ -3,17 +3,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Form, Button } from '@/shared/ui'
-import FormFieldWrapper from '@/widgets/authentication/FormFieldWrapper'
-import { loginFormSchema } from '@/entities/auth/model/schema'
+import { loginFormSchema } from '@/feature/authentication/login/model/loginSchema'
 import { RequestLoginBody } from '@/entities/auth/api/types'
-import AuthHeader from '@/widgets/authentication/Header'
+import { AuthHeader, FormFieldWrapper } from '@/widgets/authentication'
 import { useLoginMutation } from '@/entities/auth/api/authApi'
 import { setCredentials } from '@/entities/auth/model/slice'
 import { useAppDispatch } from '@/shared/model/hook'
 import { useToast } from '@/shared/ui/use-toast'
 import { Toaster } from '@/shared/ui/toaster'
 
-function LoginFormPage() {
+export function LoginForm() {
   const form = useForm<RequestLoginBody>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -91,4 +90,3 @@ function LoginFormPage() {
     </div>
   )
 }
-export default LoginFormPage

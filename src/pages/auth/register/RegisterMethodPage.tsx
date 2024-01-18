@@ -1,5 +1,5 @@
 import { Button } from '@/shared/ui/button'
-import AuthHeader from '@/widgets/authentication/Header'
+import { AuthHeader } from '@/widgets/authentication'
 import { Github, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 function RegisterMethodPage() {
