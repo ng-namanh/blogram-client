@@ -40,7 +40,7 @@ export function LoginForm() {
   }
 
   return (
-    <div className='mx-auto'>
+    <div className='mx-auto flex flex-col justify-center '>
       <div className='flex justify-center items-center flex-col'>
         <AuthHeader />
         <div className='w-full flex flex-col gap-4 mt-8'>
