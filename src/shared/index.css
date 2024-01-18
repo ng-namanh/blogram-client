@@ -78,4 +78,7 @@
   body {
     @apply bg-background text-foreground relative h-full font-sans antialiased;
   }
+  h1 {
+    @apply font-bold text-2xl;
+  }
 }
