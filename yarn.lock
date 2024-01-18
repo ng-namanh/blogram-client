@@ -1419,6 +1419,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tiptap/extension-highlight@npm:^2.1.16":
+  version: 2.1.16
+  resolution: "@tiptap/extension-highlight@npm:2.1.16"
+  peerDependencies:
+    "@tiptap/core": ^2.0.0
+  checksum: 695b6f198feb1e8f451302000bfcb6eb83357f8dac07344aca92ddb7ab21d47c4db467ce22cab014fe5560e6f03bc219eeedfd54ecc1d377a4dba81c1c2be2e0
+  languageName: node
+  linkType: hard
+
 "@tiptap/extension-history@npm:^2.1.16":
   version: 2.1.16
   resolution: "@tiptap/extension-history@npm:2.1.16"
@@ -1490,6 +1499,15 @@ __metadata:
   peerDependencies:
     "@tiptap/core": ^2.0.0
   checksum: c739dab7661e50a0201df4637a24e66bdbb58b41f7c370c6310c8b3ef8bdc3ddcc20dd280732f9859f769e614832b9ddcae8e5a92dd783dc24b57f11b1ed5333
+  languageName: node
+  linkType: hard
+
+"@tiptap/extension-typography@npm:^2.1.16":
+  version: 2.1.16
+  resolution: "@tiptap/extension-typography@npm:2.1.16"
+  peerDependencies:
+    "@tiptap/core": ^2.0.0
+  checksum: 782c8b27e7ebdd7052304d7f0161a6b309c66d66390cf71617e4a8ed3f17f32db5497d46c41ebb73f015f126dc0dffc9ee0ef8a393db79cbac73086ae4fa4bd6
   languageName: node
   linkType: hard
 
@@ -2316,6 +2334,8 @@ __metadata:
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@radix-ui/react-toast": "npm:^1.1.5"
     "@reduxjs/toolkit": "npm:^2.0.1"
+    "@tiptap/extension-highlight": "npm:^2.1.16"
+    "@tiptap/extension-typography": "npm:^2.1.16"
     "@tiptap/pm": "npm:^2.1.16"
     "@tiptap/react": "npm:^2.1.16"
     "@tiptap/starter-kit": "npm:^2.1.16"
