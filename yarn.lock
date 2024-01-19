@@ -885,6 +885,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-toggle@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@radix-ui/react-toggle@npm:1.0.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.13.10"
+    "@radix-ui/primitive": "npm:1.0.1"
+    "@radix-ui/react-primitive": "npm:1.0.3"
+    "@radix-ui/react-use-controllable-state": "npm:1.0.1"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0
+    react-dom: ^16.8 || ^17.0 || ^18.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 9b487dad213ea7e70b0aa205e7c6f790a6f2bf394c39912e22dbe003403fd0d24a41c2efd31695fc31ab7bac286f28253dbb2fc5202cacd572ebf909f1fdc86c
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-use-callback-ref@npm:1.0.1":
   version: 1.0.1
   resolution: "@radix-ui/react-use-callback-ref@npm:1.0.1"
@@ -2333,6 +2355,7 @@ __metadata:
     "@radix-ui/react-label": "npm:^2.0.2"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@radix-ui/react-toast": "npm:^1.1.5"
+    "@radix-ui/react-toggle": "npm:^1.0.3"
     "@reduxjs/toolkit": "npm:^2.0.1"
     "@tiptap/extension-highlight": "npm:^2.1.16"
     "@tiptap/extension-typography": "npm:^2.1.16"
