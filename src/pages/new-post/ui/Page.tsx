@@ -1,42 +1,52 @@
-import Highlight from '@tiptap/extension-highlight'
-import Typography from '@tiptap/extension-typography'
-import { EditorContent, useEditor } from '@tiptap/react'
-import { Document } from '@tiptap/extension-document'
-import StarterKit from '@tiptap/starter-kit'
-
-const CustomDocument = Document.extend({
-  content: 'heading block*'
-})
+import { useForm } from 'react-hook-form'
+import { postSchema, postSchemaType } from '../model/postSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Button, Form, FormControl, FormField, FormItem } from '@/shared/ui'
+import { FormFieldWrapper } from '@/widgets/authentication'
+import TextEditor from './TextEditor'
 
 export function NewPostPage() {
-  const editor = useEditor({
-    extensions: [
-      CustomDocument,
-      StarterKit.configure({
-        document: false
-      }),
-      Highlight,
-      Typography
-    ],
-    content: `
-    <p>
-      Markdown shortcuts make it easy to format the text while typing.
-    </p>
-    `,
-    autofocus: false,
-    editable: true,
-    injectCSS: true,
-    editorProps: {
-      attributes: {
-        class: ' mx-auto focus:outline-none'
-      }
-    }
+  const form = useForm<postSchemaType>({
+    mode: 'onChange',
+    resolver: zodResolver(postSchema),
+    defaultValues: { title: '', content: '' }
   })
 
+  async function onSubmit(values: postSchemaType) {
+    console.log(values)
+  }
+
   return (
-    <EditorContent
-      editor={editor}
-      className='border border-black w-[800px] p-16 h-[800px]'
-    />
+    <div className='flex flex-col'>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className='space-y-4 w-full'
+        >
+          <FormFieldWrapper
+            name='title'
+            control={form.control}
+            placeholder='Title here...'
+            type='text'
+            textarea
+          />
+          <FormField
+            control={form.control}
+            name='content'
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <TextEditor onChange={field.onChange} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <Button type='submit' className='w-full'>
+            Post
+          </Button>
+        </form>
+      </Form>
+    </div>
   )
 }
