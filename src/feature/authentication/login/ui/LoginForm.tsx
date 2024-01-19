@@ -3,7 +3,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Form, Button } from '@/shared/ui'
-import { loginFormSchema } from '@/feature/authentication/login/model/loginSchema'
+import {
+  loginFormSchema,
+  LoginFormType
+} from '@/feature/authentication/login/model/loginSchema'
 import { RequestLoginBody } from '@/entities/auth/api/types'
 import { AuthHeader, FormFieldWrapper } from '@/widgets/authentication'
 import { useLoginMutation } from '@/entities/auth/api/authApi'
@@ -13,14 +16,15 @@ import { useToast } from '@/shared/ui/use-toast'
 import { Toaster } from '@/shared/ui/toaster'
 
 export function LoginForm() {
-  const form = useForm<RequestLoginBody>({
+  const form = useForm<LoginFormType>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: '',
       password: ''
     }
   })
-  const [login, { isSuccess, error }] = useLoginMutation()
+
+  const [login] = useLoginMutation()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { toast } = useToast()
@@ -29,7 +33,6 @@ export function LoginForm() {
     try {
       const userData = await login(values).unwrap()
       dispatch(setCredentials({ ...userData, values }))
-      console.log(userData, isSuccess, error)
       form.reset()
       navigate('/')
     } catch (error: unknown) {

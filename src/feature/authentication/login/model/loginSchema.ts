@@ -11,4 +11,4 @@ export const loginFormSchema = z.object({
   })
 })
 
-export type LoginForm = z.infer<typeof loginFormSchema>
+export type LoginFormType = z.infer<typeof loginFormSchema>
