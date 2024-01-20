@@ -1,5 +1,13 @@
 import { Editor } from '@tiptap/react'
-import { Bold, Italic, List, ListOrdered, Heading } from 'lucide-react'
+import {
+  Bold,
+  Italic,
+  List,
+  ListOrdered,
+  Heading,
+  Quote,
+  Code
+} from 'lucide-react'
 import { Toggle } from '@/shared/ui'
 
 type Props = {
@@ -47,6 +55,20 @@ export function ToolBar({ editor }: Props) {
         pressed={editor.isActive('heading', { level: 2 })}
       >
         <Heading className='h-6 w-6' />
+      </Toggle>
+      <Toggle
+        size='sm'
+        onClick={() => editor.chain().focus().toggleBlockquote().run()}
+        pressed={editor.isActive('blockquote')}
+      >
+        <Quote className='h-6 w-6' />
+      </Toggle>
+      <Toggle
+        size='sm'
+        onClick={() => editor.chain().focus().toggleCode().run()}
+        pressed={editor.isActive('code')}
+      >
+        <Code className='h-6 w-6' />
       </Toggle>
     </div>
   )

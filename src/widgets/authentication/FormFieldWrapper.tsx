@@ -7,6 +7,7 @@ import {
   Input,
   Textarea
 } from '@/shared/ui'
+import { useRef } from 'react'
 import { Control, FieldValues, Path } from 'react-hook-form'
 
 type FormFieldWrapperProps<TFieldValues extends FieldValues = FieldValues> = {
@@ -28,6 +29,15 @@ export function FormFieldWrapper<
   control,
   textarea = false
 }: FormFieldWrapperProps<TFieldValues>) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  function handleInput() {
+    const textarea = textareaRef.current
+    if (textarea) {
+      textarea.style.height = 'auto'
+      textarea.style.height = `${textarea.scrollHeight}px`
+    }
+  }
   return (
     <FormField
       control={control}
@@ -38,6 +48,7 @@ export function FormFieldWrapper<
           <FormControl>
             {textarea ? (
               <Textarea
+                onInput={handleInput}
                 placeholder={placeholder}
                 {...field}
                 className='p-0 mt-0 resize-none text-5xl font-bold focus:outline-0 outline-none focus:border-none border-none'
