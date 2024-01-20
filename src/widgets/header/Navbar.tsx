@@ -5,7 +5,7 @@ import { DropdownMenuHeader } from './Dropdown'
 import { useAppSelector } from '@/shared/model/hook'
 import Logo from '@/shared/ui/logo/Logo'
 import { selectedUser } from '@/entities/auth/model/slice'
-import HeaderSearchInput from './Input'
+import HeaderSearchInput from './SearchInput'
 import MobileDrawer from './MobileDrawer'
 import { useState } from 'react'
 
