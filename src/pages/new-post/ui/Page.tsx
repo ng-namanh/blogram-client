@@ -17,19 +17,21 @@ export function NewPostPage() {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col bg-[#E7F4FF]'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className='space-y-4 w-full'
         >
-          <FormFieldWrapper
-            name='title'
-            control={form.control}
-            placeholder='Title here...'
-            type='text'
-            textarea
-          />
+          <div className=' px-16 py-8'>
+            <FormFieldWrapper
+              name='title'
+              control={form.control}
+              placeholder='New post title here...'
+              type='text'
+              textarea
+            />
+          </div>
           <FormField
             control={form.control}
             name='content'

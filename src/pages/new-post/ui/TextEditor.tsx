@@ -32,7 +32,7 @@ function TextEditor({ onChange }: Props) {
       <ToolBar editor={editor} />
       <EditorContent
         editor={editor}
-        className='border border-black w-[800px] p-16 h-[800px]'
+        className=' w-[800px] p-16 h-[800px] mt-0 '
       />
     </>
   )

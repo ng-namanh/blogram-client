@@ -12,7 +12,7 @@ export function ToolBar({ editor }: Props) {
   }
 
   return (
-    <div className='border border-black bg-transparent rounded-sm'>
+    <div className='bg-[#f9f9f9] rounded-sm'>
       <Toggle
         size='sm'
         onClick={() => editor.chain().focus().toggleBold().run()}
