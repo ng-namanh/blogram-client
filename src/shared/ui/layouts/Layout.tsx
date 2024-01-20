@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom'
 type Props = {
   headerSlot?: ReactNode
   className?: string
+  itemStart?: boolean
 }
 
 function Layout(props: Props) {
@@ -16,7 +17,11 @@ function Layout(props: Props) {
       }
     >
       {props.headerSlot}
-      <div className='max-w-screen-sm lg:max-w-screen-lg mx-auto my-0 flex-1 flex justify-center items-center'>
+      <div
+        className={`max-w-screen-sm lg:max-w-screen-lg mx-auto my-0 flex-1 flex justify-center ${
+          props.itemStart ? 'items-start' : 'items-center'
+        }`}
+      >
         <Outlet />
       </div>
     </div>
