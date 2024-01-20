@@ -30,10 +30,7 @@ function TextEditor({ onChange }: Props) {
   return (
     <>
       <ToolBar editor={editor} />
-      <EditorContent
-        editor={editor}
-        className=' w-[800px] p-16 h-[800px] mt-0 '
-      />
+      <EditorContent editor={editor} className=' w-[800px] p-16 mt-0 ' />
     </>
   )
 }
