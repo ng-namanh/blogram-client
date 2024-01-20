@@ -3,7 +3,7 @@ import { postSchema, postSchemaType } from '../model/postSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Form, FormControl, FormField, FormItem } from '@/shared/ui'
 import { FormFieldWrapper } from '@/widgets/authentication'
-import TextEditor from './TextEditor'
+import TextEditor from '../../../widgets/new-post/TextEditor'
 
 export function NewPostPage() {
   const form = useForm<postSchemaType>({
