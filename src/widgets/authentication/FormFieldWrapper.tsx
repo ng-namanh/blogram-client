@@ -40,7 +40,7 @@ export function FormFieldWrapper<
               <Textarea
                 placeholder={placeholder}
                 {...field}
-                className='resize-vertical'
+                className='p-0 mt-0 resize-none text-5xl font-bold focus:outline-0 outline-none focus:border-none border-none'
               />
             ) : (
               <Input type={type} placeholder={placeholder} {...field} />
