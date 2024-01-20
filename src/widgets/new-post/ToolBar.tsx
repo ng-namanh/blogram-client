@@ -12,7 +12,7 @@ export function ToolBar({ editor }: Props) {
   }
 
   return (
-    <div className='bg-[#f9f9f9] rounded-sm'>
+    <div className='bg-[#f0e2f099] rounded-sm flex justify-center p-2 gap-2 overflow-auto'>
       <Toggle
         size='sm'
         onClick={() => editor.chain().focus().toggleBold().run()}
