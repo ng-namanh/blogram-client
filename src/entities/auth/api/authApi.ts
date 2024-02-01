@@ -13,6 +13,7 @@ export const authApiSlice = baseApi.injectEndpoints({
         body
       }),
       invalidatesTags: [SESSION_TAG],
+      // Manipulate the response to match the AuthCredentials type
       transformResponse: (response: AuthCredentialsDto) => mapSession(response)
     })
   })
