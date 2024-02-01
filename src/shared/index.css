@@ -76,13 +76,13 @@
     @apply h-full;
   }
   body {
-    @apply bg-background text-foreground relative h-full font-sans antialiased;
+    @apply relative h-full bg-background font-sans text-foreground antialiased;
   }
   h1 {
-    @apply font-bold text-2xl;
+    @apply text-2xl font-bold;
   }
   h2 {
-    @apply font-bold text-xl;
+    @apply text-xl font-bold;
   }
   ul {
     @apply list-disc;
