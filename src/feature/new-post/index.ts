@@ -1,1 +1,1 @@
-export { CreatePostForm } from './ui/Page'
+export { CreatePostForm } from './ui/Form'
