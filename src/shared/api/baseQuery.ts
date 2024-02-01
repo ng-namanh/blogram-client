@@ -6,7 +6,7 @@ export const baseQuery = fetchBaseQuery({
   baseUrl: config.API_ENDPOINT,
   credentials: 'same-origin',
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.accessToken
+    const token = (getState() as RootState).auth.token
 
     if (token) {
       headers.set('authorization', `Bearer ${token}`)

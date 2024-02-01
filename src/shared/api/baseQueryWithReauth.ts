@@ -28,8 +28,6 @@ export async function baseQueryWithReauth(
     const user = (api.getState() as RootState).auth.user
 
     if (user) {
-      console.log('user is not logged in')
-
       const refreshArgs: FetchArgs = {
         url: '/auth/refresh',
         method: 'POST',
@@ -42,9 +40,10 @@ export async function baseQueryWithReauth(
       if (refreshResult?.data) {
         api.dispatch(setCredentials({ ...refreshResult.data, user }))
         result = await baseQuery(args, api, extraOptions)
-      } else {
-        api.dispatch(logout())
       }
+    } else {
+      console.log('no user found, logging out')
+      api.dispatch(logout())
     }
   }
 
