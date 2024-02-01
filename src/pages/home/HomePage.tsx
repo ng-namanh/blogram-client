@@ -1,4 +1,9 @@
+import { useAppSelector } from '@/shared/model/hook'
+
 function HomePage() {
-  return <div className=''>HomePage</div>
+  const user = useAppSelector((state) => state.auth.user)
+  console.log(user)
+
+  return <div className=''>Home page</div>
 }
 export default HomePage

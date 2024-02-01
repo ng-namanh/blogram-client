@@ -11,10 +11,9 @@ type Props = {
 function Layout(props: Props) {
   return (
     <div
-      className={
-        cn('min-h-screen flex items-start justify-center flex-col') +
-        props.className
-      }
+      className={cn(
+        `min-h-screen flex items-start justify-center flex-col ${props.className}`
+      )}
     >
       {props.headerSlot}
       <div
