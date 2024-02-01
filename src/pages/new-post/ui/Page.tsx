@@ -11,6 +11,7 @@ import {
 } from '@/shared/ui'
 import { FormFieldWrapper } from '@/widgets/authentication'
 import TextEditor from '@/widgets/new-post/TextEditor'
+import { useCreatePostMutation } from '@/entities/post/api/postApi'
 
 export function NewPostPage() {
   const form = useForm<postSchemaType>({
@@ -19,8 +20,12 @@ export function NewPostPage() {
     defaultValues: { title: '', content: '' }
   })
 
+  const [createPost, data] = useCreatePostMutation()
+
   async function onSubmit(values: postSchemaType) {
-    console.log(values)
+    const postCreated = createPost(values)
+    console.log(postCreated, data)
+    form.reset()
   }
 
   return (
@@ -47,7 +52,10 @@ export function NewPostPage() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <TextEditor onChange={field.onChange} />
+                      <TextEditor
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
