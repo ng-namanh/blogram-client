@@ -1,43 +1,43 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { authLayout, defaultLayout, newPostLayout } from './LayoutProvider'
-import HomePage from '@/pages/home/HomePage'
-import { CreatePostPage } from '@/pages/create-post'
-import { LoginFormPage, RegisterMethodPage, RegisterPage } from '@/pages/auth'
+import { createBrowserRouter } from "react-router-dom";
+import { authLayout, homeLayout, newPostLayout } from "./LayoutProvider";
+import HomePage from "@/pages/home/HomePage";
+import { CreatePostPage } from "@/pages/create-post";
+import { LoginFormPage, RegisterMethodPage, RegisterPage } from "@/pages/auth";
 
 export const route = createBrowserRouter([
   {
-    element: defaultLayout,
+    element: homeLayout,
     children: [
       {
-        path: '/',
-        element: <HomePage />
-      }
-    ]
+        path: "/",
+        element: <HomePage />,
+      },
+    ],
   },
   {
     element: authLayout,
     children: [
       {
-        path: '/auth/register',
-        element: <RegisterMethodPage />
+        path: "/auth/register",
+        element: <RegisterMethodPage />,
       },
       {
-        path: '/auth/email_signup',
-        element: <RegisterPage />
+        path: "/auth/email_signup",
+        element: <RegisterPage />,
       },
       {
-        path: '/auth/login',
-        element: <LoginFormPage />
-      }
-    ]
+        path: "/auth/login",
+        element: <LoginFormPage />,
+      },
+    ],
   },
   {
     element: newPostLayout,
     children: [
       {
-        path: '/new',
-        element: <CreatePostPage />
-      }
-    ]
-  }
-])
+        path: "/new",
+        element: <CreatePostPage />,
+      },
+    ],
+  },
+]);
