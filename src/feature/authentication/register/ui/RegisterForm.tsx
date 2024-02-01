@@ -25,7 +25,7 @@ export default function RegisterForm() {
   })
 
   function onSubmit(values: SignupForm) {
-    createUser(values).then((response) => {
+    createUser(values).then((response: { success: boolean }) => {
       if (response.success === true) {
         setIsRegistered(true)
       }

@@ -13,7 +13,7 @@ import { FormFieldWrapper } from '@/widgets/authentication'
 import TextEditor from '@/widgets/new-post/TextEditor'
 import { useCreatePostMutation } from '@/entities/post/api/postApi'
 
-export function NewPostPage() {
+export function CreatePostForm() {
   const form = useForm<postSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(postSchema),

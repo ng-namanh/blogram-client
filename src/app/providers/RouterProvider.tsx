@@ -1,10 +1,8 @@
-import RegisterMethodPage from '@/pages/auth/register/RegisterMethodPage'
 import { createBrowserRouter } from 'react-router-dom'
 import { authLayout, defaultLayout, newPostLayout } from './LayoutProvider'
 import HomePage from '@/pages/home/HomePage'
-import LoginFormPage from '@/pages/auth/login/Page'
-import RegisterPage from '@/pages/auth/register/RegisterPage'
-import { NewPostPage } from '@/pages/new-post'
+import { CreatePostPage } from '@/pages/create-post'
+import { LoginFormPage, RegisterMethodPage, RegisterPage } from '@/pages/auth'
 
 export const route = createBrowserRouter([
   {
@@ -38,7 +36,7 @@ export const route = createBrowserRouter([
     children: [
       {
         path: '/new',
-        element: <NewPostPage />
+        element: <CreatePostPage />
       }
     ]
   }

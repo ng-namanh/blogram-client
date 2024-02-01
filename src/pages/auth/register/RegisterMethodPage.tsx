@@ -2,7 +2,7 @@ import { Button } from '@/shared/ui/button'
 import { AuthHeader } from '@/widgets/authentication'
 import { Github, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
-function RegisterMethodPage() {
+export function RegisterMethodPage() {
   return (
     <div className='mx-auto my-0 flex items-center justify-center flex-col'>
       <AuthHeader />
@@ -29,4 +29,3 @@ function RegisterMethodPage() {
     </div>
   )
 }
-export default RegisterMethodPage
