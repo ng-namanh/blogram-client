@@ -3,12 +3,14 @@ import { ToolBar } from './ToolBar'
 import Highlight from '@tiptap/extension-highlight'
 import Typography from '@tiptap/extension-typography'
 import StarterKit from '@tiptap/starter-kit'
+import { useEffect } from 'react'
 
 type Props = {
   onChange: (value: string) => void
+  value: string
 }
 
-function TextEditor({ onChange }: Props) {
+function TextEditor({ onChange, value }: Props) {
   const editor = useEditor({
     extensions: [StarterKit.configure(), Highlight, Typography],
     content: `
@@ -23,14 +25,21 @@ function TextEditor({ onChange }: Props) {
     },
     onUpdate({ editor }) {
       onChange(editor.getHTML())
-      console.log(editor.getHTML())
     }
   })
-
+  useEffect(() => {
+    if (value === '' && editor) {
+      editor.commands.clearContent()
+    }
+  }, [value, editor])
   return (
     <>
       <ToolBar editor={editor} />
-      <EditorContent editor={editor} className=' w-[800px] p-16 mt-0 ' />
+      <EditorContent
+        editor={editor}
+        value={value}
+        className=' w-[800px] p-16 mt-0 '
+      />
     </>
   )
 }
