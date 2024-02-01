@@ -1,39 +1,40 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { cn } from '../lib/utils'
-import { Button } from './button'
+import React from "react";
+import { Link } from "react-router-dom";
+import { cn } from "../lib/utils";
+import { Button } from "./button";
 
 interface ButtonWithIconProps {
-  icon: JSX.Element
-  text: string
-  to: string
-  className?: string
+  icon: JSX.Element;
+  text: string;
+  to: string;
+  className?: string;
 }
 
 const NavItem: React.FC<ButtonWithIconProps> = ({
   icon,
   text,
   to,
-  className
+  className,
 }) => {
   return (
     <Link
       to={to}
       className={
         cn(
-          'w-full justify-start inline-flex items-start px-4 py-2 text-sm font-medium rounded-md shadow-sm text-white '
+          "inline-flex w-full items-start justify-start rounded-md py-2 text-sm font-medium text-white shadow-sm ",
         ) + className
       }
     >
       <Button
-        variant='link'
-        className='w-full items-center text-lg gap-2 justify-start text-primary'
+        variant="link"
+        size="sm"
+        className=" w-full items-center justify-start gap-2 py-6 text-base text-primary"
       >
         {icon}
         {text}
       </Button>
     </Link>
-  )
-}
+  );
+};
 
-export default NavItem
+export default NavItem;
