@@ -2,15 +2,16 @@ import { RootState } from '@/app/appStore'
 import { createSlice } from '@reduxjs/toolkit'
 import { authApiSlice } from '@/entities/auth/api/authApi'
 import { User } from './types'
+
 type AuthSliceState =
   | {
-      accessToken: string | null
+      token: string | null
       user: User
       isAuthorized: true
     }
   | {
       isAuthorized: false
-      accessToken?: string | null
+      token?: string | null
       user?: User | null
     }
 
@@ -24,18 +25,19 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.accessToken = null
+      state.token = null
       state.user = null
       state.isAuthorized = false
     },
     setCredentials: (state, action) => {
       const { accessToken, user } = action.payload
       if (accessToken && user) {
-        state.accessToken = accessToken
+        state.token = accessToken
         state.user = user
       }
     }
   },
+
   extraReducers: (builder) => {
     builder.addMatcher(
       authApiSlice.endpoints.login.matchFulfilled,
@@ -44,7 +46,7 @@ export const authSlice = createSlice({
 
         if (state.isAuthorized) {
           state.user = payload.user
-          state.accessToken = payload.accessToken
+          state.token = payload.accessToken
         }
       }
     )
