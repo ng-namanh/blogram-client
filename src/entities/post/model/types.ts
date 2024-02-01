@@ -1,6 +1,8 @@
+import { User } from "@/entities/user/model/types";
+
 export type Post = {
-  id?: number
-  title: string
-  content: string
-  authorId: number
-}
+  id?: number;
+  title: string;
+  content: string;
+  author: User;
+};
