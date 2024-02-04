@@ -1,16 +1,35 @@
-import NavItem from "@/shared/ui/button-with-icon";
+import { Button } from "@/shared/ui";
 import { HomeIcon } from "lucide-react";
 
 export function LeftSideBar() {
   return (
-    <div className="h-full">
+    <div className="h-full rounded-sm ">
       <aside>
-        <ul className="w-full">
-          <NavItem to="/" icon={<HomeIcon size="20px" />} text="Home" />
-          <NavItem to="/" icon={<HomeIcon size="20px" />} text="Home" />
-          <NavItem to="/" icon={<HomeIcon size="20px" />} text="Home" />
-          <NavItem to="/" icon={<HomeIcon size="20px" />} text="Home" />
-          <NavItem to="/" icon={<HomeIcon size="20px" />} text="Home" />
+        <ul className="flex w-full flex-col gap-4">
+          <Button
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            variant="ghost"
+          >
+            <HomeIcon size="20px" /> Home
+          </Button>
+          <Button
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            variant="ghost"
+          >
+            <HomeIcon size="20px" /> Home
+          </Button>
+          <Button
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            variant="ghost"
+          >
+            <HomeIcon size="20px" /> Home
+          </Button>
+          <Button
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            variant="ghost"
+          >
+            <HomeIcon size="20px" /> Home
+          </Button>
         </ul>
       </aside>
     </div>
