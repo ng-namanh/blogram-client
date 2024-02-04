@@ -1,6 +1,7 @@
 import { baseApi } from "@/shared/api/baseApi";
 import { RequestCreatePostBody, ResponseCreatePost } from "./types";
 import { Post } from "../model/types";
+import { POST_TAG } from "@/shared/api/tags";
 
 export const postApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,6 +11,7 @@ export const postApiSlice = baseApi.injectEndpoints({
         method: "post",
         body,
       }),
+      invalidatesTags: [POST_TAG],
     }),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     getPosts: builder.query<Post[], any>({
@@ -18,6 +20,7 @@ export const postApiSlice = baseApi.injectEndpoints({
         method: "get",
         params,
       }),
+      providesTags: [POST_TAG],
     }),
   }),
 });
