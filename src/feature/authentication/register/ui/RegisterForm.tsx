@@ -1,86 +1,86 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { Form, Button } from '@/shared/ui'
-import { createUser } from '@/shared/api'
-import { useState } from 'react'
-import { FormFieldWrapper } from '@/widgets/authentication/'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form, Button } from "@/shared/ui";
+import { createUser } from "@/shared/api";
+import { useState } from "react";
+import { FormFieldWrapper } from "@/widgets/authentication/";
 import {
   SignupForm,
-  signupFormSchema
-} from '@/feature/authentication/register/model/registerSchema'
-import { RegisterToast } from '@/widgets/authentication'
+  signupFormSchema,
+} from "@/feature/authentication/register/model/registerSchema";
+import { RegisterToast } from "@/widgets/authentication";
 
 export default function RegisterForm() {
-  const [isRegistered, setIsRegistered] = useState(false)
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const form = useForm<SignupForm>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
-      name: '',
-      username: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    }
-  })
+      name: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
   function onSubmit(values: SignupForm) {
     createUser(values).then((response: { success: boolean }) => {
       if (response.success === true) {
-        setIsRegistered(true)
+        setIsRegistered(true);
       }
-    })
-    form.reset()
+    });
+    form.reset();
   }
 
   return (
-    <div className='flex items-start justify-center flex-col w-full'>
-      <h1 className='font-bold mb-8 text-2xl'>Create your account</h1>
+    <div className="flex w-96 flex-col items-start justify-center">
+      <h1 className="mb-8 text-2xl font-bold">Create your account</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-4 w-full'
+          className="w-full space-y-4"
         >
           <FormFieldWrapper
-            name='name'
-            label='Name'
+            name="name"
+            label="Name"
             control={form.control}
-            placeholder='name'
-            type='text'
+            placeholder="name"
+            type="text"
           />
           <FormFieldWrapper
-            name='username'
-            label='Username'
+            name="username"
+            label="Username"
             control={form.control}
-            placeholder='username'
-            type='text'
+            placeholder="username"
+            type="text"
           />
           <FormFieldWrapper
-            name='email'
-            label='Email'
+            name="email"
+            label="Email"
             control={form.control}
-            placeholder='Email'
-            type='text'
+            placeholder="Email"
+            type="text"
           />
           <FormFieldWrapper
-            name='password'
-            label='Password'
+            name="password"
+            label="Password"
             control={form.control}
-            placeholder='password'
-            type='password'
+            placeholder="password"
+            type="password"
           />
           <FormFieldWrapper
-            name='confirmPassword'
-            label='Confirm Password'
+            name="confirmPassword"
+            label="Confirm Password"
             control={form.control}
-            placeholder='confirm password'
-            type='password'
+            placeholder="confirm password"
+            type="password"
           />
 
-          <Button type='submit'>Sign up</Button>
+          <Button type="submit">Sign up</Button>
         </form>
       </Form>
       {isRegistered && <RegisterToast />}
     </div>
-  )
+  );
 }
