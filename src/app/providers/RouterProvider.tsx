@@ -1,16 +1,16 @@
-import { createBrowserRouter } from "react-router-dom";
-import { authLayout, homeLayout, newPostLayout } from "./LayoutProvider";
-import HomePage from "@/pages/home/HomePage";
-import { CreatePostPage } from "@/pages/create-post";
-import { LoginFormPage, RegisterMethodPage, RegisterPage } from "@/pages/auth";
+import { createBrowserRouter } from 'react-router-dom';
+import { authLayout, homeLayout, newPostLayout } from './LayoutProvider';
+import MainPage from '@/pages/main/Page';
+import { CreatePostPage } from '@/pages/create-post';
+import { LoginFormPage, RegisterMethodPage, RegisterPage } from '@/pages/auth';
 
 export const route = createBrowserRouter([
   {
     element: homeLayout,
     children: [
       {
-        path: "/",
-        element: <HomePage />,
+        path: '/',
+        element: <MainPage />,
       },
     ],
   },
@@ -18,15 +18,15 @@ export const route = createBrowserRouter([
     element: authLayout,
     children: [
       {
-        path: "/auth/register",
+        path: '/auth/register',
         element: <RegisterMethodPage />,
       },
       {
-        path: "/auth/email_signup",
+        path: '/auth/email_signup',
         element: <RegisterPage />,
       },
       {
-        path: "/auth/login",
+        path: '/auth/login',
         element: <LoginFormPage />,
       },
     ],
@@ -35,7 +35,7 @@ export const route = createBrowserRouter([
     element: newPostLayout,
     children: [
       {
-        path: "/new",
+        path: '/new',
         element: <CreatePostPage />,
       },
     ],
