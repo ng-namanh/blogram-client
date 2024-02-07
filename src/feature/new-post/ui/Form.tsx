@@ -1,54 +1,54 @@
-import { useForm } from 'react-hook-form'
-import { postSchema, postSchemaType } from '../model/postSchema'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form';
+import { postSchema, postSchemaType } from '../model/postSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   Form,
   FormControl,
   FormField,
   FormItem,
-  ScrollArea
-} from '@/shared/ui'
-import { FormFieldWrapper } from '@/widgets/authentication'
-import TextEditor from '@/widgets/new-post/TextEditor'
-import { useCreatePostMutation } from '@/entities/post/api/postApi'
+  ScrollArea,
+} from '@/shared/ui';
+import { FormFieldWrapper } from '@/widgets/authentication';
+import TextEditor from '@/widgets/post/new-post/TextEditor';
+import { useCreatePostMutation } from '@/entities/post/api/postApi';
 
 export function CreatePostForm() {
   const form = useForm<postSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(postSchema),
-    defaultValues: { title: '', content: '' }
-  })
+    defaultValues: { title: '', content: '' },
+  });
 
-  const [createPost, data] = useCreatePostMutation()
+  const [createPost, data] = useCreatePostMutation();
 
   async function onSubmit(values: postSchemaType) {
-    const postCreated = createPost(values)
-    console.log(postCreated, data)
-    form.reset()
+    const postCreated = createPost(values);
+    console.log(postCreated, data);
+    form.reset();
   }
 
   return (
-    <div className='flex flex-col bg-[#E7F4FF] border shadow-sm rounded-sm h-full relative '>
+    <div className="relative flex h-full flex-col rounded-sm border bg-[#E7F4FF] shadow-sm ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-4 w-full h-[80vh] 2xl:h-[85vh]'
+          className="h-[80vh] w-full space-y-4 2xl:h-[85vh]"
         >
-          <ScrollArea className='flex flex-col h-full'>
-            <div className=' px-16 py-8 h-auto'>
+          <ScrollArea className="flex h-full flex-col">
+            <div className=" h-auto px-16 py-8">
               <FormFieldWrapper
-                name='title'
+                name="title"
                 control={form.control}
-                placeholder='New post title here...'
-                type='text'
+                placeholder="New post title here..."
+                type="text"
                 textarea
               />
             </div>
-            <div className='flex-1'>
+            <div className="flex-1">
               <FormField
                 control={form.control}
-                name='content'
+                name="content"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
@@ -62,13 +62,13 @@ export function CreatePostForm() {
               />
             </div>
           </ScrollArea>
-          <div className=' h-[64px] flex items-center absolute -bottom-20 w-full'>
-            <Button type='submit' className='px-8'>
+          <div className=" absolute -bottom-20 flex h-[64px] w-full items-center">
+            <Button type="submit" className="px-8">
               Publish
             </Button>
           </div>
         </form>
       </Form>
     </div>
-  )
+  );
 }
