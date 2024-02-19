@@ -38,7 +38,7 @@ function TextEditor({ onChange, value }: Props) {
       <EditorContent
         editor={editor}
         value={value}
-        className=" mt-0 w-[800px] p-16 "
+        className=" mt-0 h-[552px] w-[800px] p-16 "
       />
     </>
   );
