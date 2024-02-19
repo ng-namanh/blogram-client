@@ -1,5 +1,5 @@
-import { Button } from "@/shared/ui";
-import { HomeIcon } from "lucide-react";
+import { Button } from '@/shared/ui';
+import { HomeIcon, LayoutDashboard, PlusSquare, TagIcon } from 'lucide-react';
 
 export function LeftSideBar() {
   return (
@@ -7,28 +7,28 @@ export function LeftSideBar() {
       <aside>
         <ul className="flex w-full flex-col gap-4">
           <Button
-            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary/80 hover:underline "
             variant="ghost"
           >
             <HomeIcon size="20px" /> Home
           </Button>
           <Button
-            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary/80 hover:underline "
             variant="ghost"
           >
-            <HomeIcon size="20px" /> Home
+            <TagIcon size="20px" /> Tags
           </Button>
           <Button
-            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary/80 hover:underline "
             variant="ghost"
           >
-            <HomeIcon size="20px" /> Home
+            <PlusSquare size="20px" /> Create
           </Button>
           <Button
-            className="w-full items-center justify-start gap-2 text-lg hover:text-primary "
+            className="w-full items-center justify-start gap-2 text-lg hover:text-primary/80 hover:underline "
             variant="ghost"
           >
-            <HomeIcon size="20px" /> Home
+            <LayoutDashboard size="20px" /> Dashboard
           </Button>
         </ul>
       </aside>
