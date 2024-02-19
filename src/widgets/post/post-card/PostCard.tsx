@@ -47,7 +47,9 @@ export function PostCard({ post, likePost }: Props) {
                   likePost(post.id);
                 }}
               />
-              <p>{post.likes} like</p>
+              <p>
+                {post.likes > 1 ? ` ${post.likes} likes` : `${post.likes} like`}
+              </p>
             </span>
             <span className="flex gap-2 ">
               <MessageCircle className="h-6 w-6 cursor-pointer" />{' '}
