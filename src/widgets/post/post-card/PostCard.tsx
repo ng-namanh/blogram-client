@@ -1,30 +1,28 @@
 // import { useGetPostByIdQuery } from '@/entities/post/api/postApi';
 import { Post } from '@/entities/post/model/types';
 import { formatDate } from '@/shared/lib/formatDate';
+import { Button } from '@/shared/ui';
 import { Heart, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 type Props = {
   post: Post;
-  likePost: (postId: number) => void;
 };
 
-// const [] = useGetPostByIdQuery()
-
-export function PostCard({ post, likePost }: Props) {
+export function PostCard({ post }: Props) {
   return (
     <article
       key={post.id}
       className="cursor-pointer rounded-md bg-secondary p-4"
     >
-      <Link to={`post/${post.id}`}>
-        <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
+        <Link to={`post/${post.id}`}>
           <div>
             <div>
               <p className="text-lg">
                 Posted by
-                <span className="cursor-pointer text-primary">
-                  /{post.author.username}
+                <span className="ml-1 cursor-pointer text-primary">
+                  {post.author.username}
                 </span>
               </p>
               <time
@@ -39,25 +37,24 @@ export function PostCard({ post, likePost }: Props) {
               {post.title}
             </h2>
           </div>
-          <div className="flex gap-5">
-            <span className="flex gap-2">
-              <Heart
-                className="h-6 w-6 cursor-pointer"
-                onClick={() => {
-                  likePost(post.id);
-                }}
-              />
+        </Link>
+        <div className="flex gap-5">
+          <Link to={`post/${post.id}`}>
+            <Button variant="ghost" className="flex gap-2 p-2">
+              <Heart className="h-6 w-6 cursor-pointer" />
               <p>
                 {post.likes > 1 ? ` ${post.likes} likes` : `${post.likes} like`}
               </p>
-            </span>
-            <span className="flex gap-2 ">
+            </Button>
+          </Link>{' '}
+          <Link to={`post/${post.id}`}>
+            <Button variant="ghost" className="flex gap-2 p-2">
               <MessageCircle className="h-6 w-6 cursor-pointer" />{' '}
               <p>1 comment</p>
-            </span>
-          </div>
+            </Button>
+          </Link>
         </div>
-      </Link>
+      </div>
     </article>
   );
 }
