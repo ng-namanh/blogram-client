@@ -1,8 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { authLayout, homeLayout, newPostLayout } from './LayoutProvider';
+import {
+  authLayout,
+  defaultLayout,
+  homeLayout,
+  newPostLayout,
+} from './LayoutProvider';
 import MainPage from '@/pages/main/Page';
 import { CreatePostPage } from '@/pages/create-post';
 import { LoginFormPage, RegisterMethodPage, RegisterPage } from '@/pages/auth';
+import { PostPage } from '@/pages/post/Page';
 
 export const route = createBrowserRouter([
   {
@@ -11,6 +17,15 @@ export const route = createBrowserRouter([
       {
         path: '/',
         element: <MainPage />,
+      },
+    ],
+  },
+  {
+    element: defaultLayout,
+    children: [
+      {
+        path: '/post/:postId',
+        element: <PostPage />,
       },
     ],
   },

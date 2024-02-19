@@ -3,6 +3,11 @@ import { RequestCreatePostBody, ResponseCreatePost } from './types';
 import { Post } from '../model/types';
 import { POST_TAG } from '@/shared/api/tags';
 
+type ResponseGetPost = {
+  success: boolean;
+  post: Post;
+};
+
 export const postApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createPost: builder.mutation<ResponseCreatePost, RequestCreatePostBody>({
@@ -21,7 +26,13 @@ export const postApiSlice = baseApi.injectEndpoints({
       }),
       providesTags: [POST_TAG],
     }),
-
+    getPostById: builder.query<ResponseGetPost, number>({
+      query: (postId) => ({
+        url: `post/${postId}`,
+        method: 'get',
+      }),
+      providesTags: [POST_TAG],
+    }),
     likePost: builder.mutation<void, { postId: number }>({
       query: ({ postId }) => ({
         url: `post/${postId}/like`,
@@ -32,5 +43,9 @@ export const postApiSlice = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreatePostMutation, useGetPostsQuery, useLikePostMutation } =
-  postApiSlice;
+export const {
+  useCreatePostMutation,
+  useGetPostsQuery,
+  useLikePostMutation,
+  useGetPostByIdQuery,
+} = postApiSlice;
