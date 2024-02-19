@@ -20,11 +20,10 @@ export function CreatePostForm() {
     defaultValues: { title: '', content: '' },
   });
 
-  const [createPost, data] = useCreatePostMutation();
+  const [createPost] = useCreatePostMutation();
 
   async function onSubmit(values: postSchemaType) {
-    const postCreated = createPost(values);
-    console.log(postCreated, data);
+    createPost(values).unwrap();
     form.reset();
   }
 

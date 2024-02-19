@@ -1,6 +1,6 @@
-import { cn } from "@/shared/lib/utils";
-import { type ReactNode } from "react";
-import { Outlet as ArticleList } from "react-router-dom";
+import { cn } from '@/shared/lib/utils';
+import { type ReactNode } from 'react';
+import { Outlet as ArticleList } from 'react-router-dom';
 
 type Props = {
   headerSlot?: ReactNode;
@@ -19,10 +19,9 @@ function Layout(props: Props) {
       )}
     >
       {props.headerSlot}
-      {/* <div className="absolute inset-0 z-[-20] bg-[#EBE7E7]"></div> */}
       <div
-        className={` mx-auto my-0  ${props.isHomePage ? "grid grid-cols-layout gap-4" : "flex justify-center"} max-w-screen-sm flex-1 p-4 lg:max-w-[1280px] ${
-          props.itemStart ? "items-start" : "items-center"
+        className={` mx-auto my-0  ${props.isHomePage ? 'grid grid-cols-layout gap-4' : 'flex justify-center'} max-w-screen-sm flex-1 p-4 lg:max-w-[1280px] ${
+          props.itemStart ? 'items-start' : 'items-center'
         }`}
       >
         {props.leftSidebar}

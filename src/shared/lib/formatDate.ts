@@ -2,7 +2,7 @@ export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const now = new Date();
 
-  const month = new Intl.DateTimeFormat("en", { month: "short" }).format(date);
+  const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(date);
   const day = date.getDate();
 
   const diffInHours = Math.floor((Number(now) - Number(date)) / 1000 / 60 / 60);
