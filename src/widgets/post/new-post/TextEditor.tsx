@@ -1,46 +1,96 @@
-import { EditorContent, useEditor } from '@tiptap/react';
-import { ToolBar } from './ToolBar';
-import Highlight from '@tiptap/extension-highlight';
-import Typography from '@tiptap/extension-typography';
-import StarterKit from '@tiptap/starter-kit';
-import { useEffect } from 'react';
+import '@mdxeditor/editor/style.css';
+
+import {
+  MDXEditor,
+  BoldItalicUnderlineToggles,
+  toolbarPlugin,
+  headingsPlugin,
+  listsPlugin,
+  linkPlugin,
+  markdownShortcutPlugin,
+  quotePlugin,
+  CodeToggle,
+  CreateLink,
+  BlockTypeSelect,
+  InsertImage,
+  ListsToggle,
+  diffSourcePlugin,
+  DiffSourceToggleWrapper,
+} from '@mdxeditor/editor';
+import '@mdxeditor/editor/style.css';
 
 type Props = {
   onChange: (value: string) => void;
   value: string;
 };
 
+const allPlugins = (diffMarkdown: string) => [
+  toolbarPlugin({
+    toolbarContents: () => (
+      <div className="flex hover:cursor-pointer">
+        <DiffSourceToggleWrapper options={['rich-text', 'source']}>
+          <BoldItalicUnderlineToggles />
+          <ListsToggle />
+          <BlockTypeSelect />
+          <CodeToggle />
+          <CreateLink />
+          <InsertImage />
+        </DiffSourceToggleWrapper>
+      </div>
+    ),
+  }),
+  headingsPlugin(),
+  listsPlugin(),
+  linkPlugin(),
+  quotePlugin(),
+  markdownShortcutPlugin(),
+  diffSourcePlugin({ viewMode: 'source', diffMarkdown }),
+];
+
 function TextEditor({ onChange, value }: Props) {
-  const editor = useEditor({
-    extensions: [StarterKit.configure(), Highlight, Typography],
-    content: `
-    <p>
-     Write your post content here...
-    </p>
-    `,
-    editorProps: {
-      attributes: {
-        class: 'mx-auto focus:outline-none',
-      },
-    },
-    onUpdate({ editor }) {
-      onChange(editor.getHTML());
-    },
-  });
-  useEffect(() => {
-    if (value === '' && editor) {
-      editor.commands.clearContent();
-    }
-  }, [value, editor]);
   return (
-    <>
-      <ToolBar editor={editor} />
-      <EditorContent
-        editor={editor}
-        value={value}
-        className=" mt-0 h-[552px] w-[800px] p-16 "
-      />
-    </>
+    <MDXEditor
+      className="p-3"
+      onChange={(markdown) => {
+        onChange(markdown);
+      }}
+      markdown={value}
+      plugins={allPlugins(value)}
+    />
   );
 }
+
 export default TextEditor;
+
+// type Props = {
+//   onChange: (value: string) => void;
+//   value: string;
+// };
+
+// function TextEditor({ onChange, value }: Props) {
+//   return (
+//     <>
+//       <MDEditor
+//         className="editor-height"
+//         value={value}
+//         onChange={(val) => {
+//           onChange(val!);
+//         }}
+//         commands={[
+//           commands.bold,
+//           commands.italic,
+//           commands.link,
+//           commands.orderedListCommand,
+//           commands.unorderedListCommand,
+//           commands.quote,
+//           commands.code,
+//           commands.image,
+//           commands.checkedListCommand,
+//           commands.title,
+//         ]}
+//         extraCommands={[codeEdit, codePreview]}
+//       />
+//     </>
+//   );
+// }
+// export default TextEditor;

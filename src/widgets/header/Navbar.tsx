@@ -1,13 +1,13 @@
-import { Button } from "@/shared/ui";
-import { AlignJustify, BellIcon } from "lucide-react";
-import { Link } from "react-router-dom";
-import { DropdownMenuHeader } from "./Dropdown";
-import { useAppSelector } from "@/shared/model/hook";
-import Logo from "@/shared/ui/logo/Logo";
-import { selectedUser } from "@/entities/auth/model/slice";
-import HeaderSearchInput from "./SearchInput";
-import MobileDrawer from "./MobileDrawer";
-import { useState } from "react";
+import { Button } from '@/shared/ui';
+import { AlignJustify, BellIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { DropdownMenuHeader } from './Dropdown';
+import { useAppSelector } from '@/shared/model/hook';
+import Logo from '@/shared/ui/logo/Logo';
+import { selectedUser } from '@/entities/auth/model/slice';
+import HeaderSearchInput from './SearchInput';
+import MobileDrawer from './MobileDrawer';
+import { useState } from 'react';
 
 function Header() {
   const user = useAppSelector(selectedUser);
@@ -27,7 +27,7 @@ function Header() {
             className="block md:hidden"
           />
 
-          <Logo width={50} />
+          <Logo width={103} />
           <HeaderSearchInput />
         </div>
         {isOpen && <MobileDrawer setIsOpen={setIsOpen} />}
