@@ -24,18 +24,20 @@ export function CreatePostForm() {
 
   async function onSubmit(values: postSchemaType) {
     createPost(values).unwrap();
+    console.log(values);
+
     form.reset();
   }
 
   return (
-    <div className="relative flex h-full flex-col rounded-sm border bg-[#E7F4FF] shadow-sm ">
+    <div className="relative flex h-full flex-col rounded-sm border shadow-sm ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="h-[80vh] w-full space-y-4 2xl:h-[85vh]"
         >
           <ScrollArea className="flex h-full flex-col">
-            <div className=" h-auto px-16 py-8">
+            <div className="h-auto px-16 py-8">
               <FormFieldWrapper
                 name="title"
                 control={form.control}
@@ -61,7 +63,7 @@ export function CreatePostForm() {
               />
             </div>
           </ScrollArea>
-          <div className=" absolute -bottom-20 flex h-[64px] w-full items-center">
+          <div className="absolute -bottom-20 flex h-[64px] w-full items-center">
             <Button type="submit" className="px-8">
               Publish
             </Button>
