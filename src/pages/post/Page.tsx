@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 export function PostPage() {
   const { postId } = useParams();
   const { data } = useGetPostByIdQuery(Number(postId));
+  console.log(data?.post.content);
 
   return (
     <div className="grid grid-cols-postLayout gap-4">
@@ -28,7 +29,7 @@ export function PostPage() {
           </div>
           <h1 className="my-2 text-5xl font-bold ">{data?.post.title}</h1>
         </div>
-        <ReactMarkdown className="px-16 py-8">
+        <ReactMarkdown className="whitespace-pre-wrap px-16 py-8">
           {data?.post.content}
         </ReactMarkdown>
       </main>
