@@ -1,15 +1,15 @@
-import logo from '@/shared/ui/assets/logo.png'
-import { Link } from 'react-router-dom'
+import logo from '@/shared/ui/assets/logo.svg';
+import { Link } from 'react-router-dom';
 
 type Props = {
-  width?: number
-}
+  width?: number;
+};
 
 function Logo({ width }: Props) {
   return (
-    <Link to='/'>
-      <img src={logo} alt='' width={width} height={200} />
+    <Link to="/">
+      <img src={logo} alt="" width={width} height={200} />
     </Link>
-  )
+  );
 }
-export default Logo
+export default Logo;
