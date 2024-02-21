@@ -16,38 +16,55 @@ import {
   ListsToggle,
   diffSourcePlugin,
   DiffSourceToggleWrapper,
+  imagePlugin,
 } from '@mdxeditor/editor';
 import '@mdxeditor/editor/style.css';
+import { useUploadImageMutation } from '@/feature/upload-image/model/api';
 
 type Props = {
   onChange: (value: string) => void;
   value: string;
 };
 
-const allPlugins = (diffMarkdown: string) => [
-  toolbarPlugin({
-    toolbarContents: () => (
-      <div className="flex hover:cursor-pointer">
-        <DiffSourceToggleWrapper options={['rich-text', 'source']}>
-          <BoldItalicUnderlineToggles />
-          <ListsToggle />
-          <BlockTypeSelect />
-          <CodeToggle />
-          <CreateLink />
-          <InsertImage />
-        </DiffSourceToggleWrapper>
-      </div>
-    ),
-  }),
-  headingsPlugin(),
-  listsPlugin(),
-  linkPlugin(),
-  quotePlugin(),
-  markdownShortcutPlugin(),
-  diffSourcePlugin({ viewMode: 'source', diffMarkdown }),
-];
-
 function TextEditor({ onChange, value }: Props) {
+  const [uploadImage] = useUploadImageMutation();
+
+  const handleImageUpload = async (image: File) => {
+    const response = await uploadImage(image);
+    if ('data' in response) {
+      const { url } = response.data;
+
+      return url;
+    }
+  };
+
+  const allPlugins = (diffMarkdown: string) => [
+    toolbarPlugin({
+      toolbarContents: () => (
+        <div className="flex hover:cursor-pointer">
+          <DiffSourceToggleWrapper options={['rich-text', 'source']}>
+            <BoldItalicUnderlineToggles />
+            <ListsToggle />
+            <BlockTypeSelect />
+            <CodeToggle />
+            <CreateLink />
+            <InsertImage />
+          </DiffSourceToggleWrapper>
+        </div>
+      ),
+    }),
+    headingsPlugin(),
+    listsPlugin(),
+    linkPlugin(),
+    quotePlugin(),
+
+    imagePlugin({
+      imageUploadHandler: handleImageUpload,
+    }),
+    markdownShortcutPlugin(),
+    diffSourcePlugin({ viewMode: 'source', diffMarkdown }),
+  ];
+
   return (
     <MDXEditor
       className="p-3"
