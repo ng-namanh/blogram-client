@@ -4,8 +4,8 @@ import {
   Settings,
   User,
   LayoutDashboard,
-  ListIcon
-} from 'lucide-react'
+  ListIcon,
+} from 'lucide-react';
 
 import {
   DropdownMenu,
@@ -17,65 +17,65 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-  Button
-} from '@/shared/ui/'
-import { useAppDispatch } from '@/shared/model/hook'
-import { logout } from '@/entities/auth/model/slice'
-import { useNavigate } from 'react-router-dom'
+  Button,
+} from '@/shared/ui/';
+import { useAppDispatch } from '@/shared/model/hook';
+import { logout } from '@/entities/auth/model/slice';
+import { useNavigate } from 'react-router-dom';
 
 export function DropdownMenuHeader() {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className='hover:cursor-pointer'>
-          <AvatarImage src='https://github.com/shadcn.png' alt='@shadcn' />
+        <Avatar className="hover:cursor-pointer">
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-56 left-[-91px]'>
+      <DropdownMenuContent className="left-[-91px] w-56">
         <DropdownMenuItem>
-          <User className='mr-2 h-4 w-4' />
-          <Button variant='ghost'>
+          <User className="mr-2 h-4 w-4" />
+          <Button variant="link">
             <span>Profile</span>
           </Button>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <LayoutDashboard className='mr-2 h-4 w-4' />
-            <Button variant='ghost'>
+            <LayoutDashboard className="mr-2 h-4 w-4" />
+            <Button variant="link">
               <span>Dashboard</span>
             </Button>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Plus className='mr-2 h-4 w-4' />
-            <Button variant='ghost'>
+            <Plus className="mr-2 h-4 w-4" />
+            <Button variant="link">
               <span>Create Post</span>
             </Button>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <ListIcon className='mr-2 h-4 w-4' />
-            <Button variant='ghost'>
+            <ListIcon className="mr-2 h-4 w-4" />
+            <Button variant="link">
               <span>Reading lists</span>
             </Button>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuItem>
-          <Settings className='mr-2 h-4 w-4' />
-          <Button variant='ghost'>
+          <Settings className="mr-2 h-4 w-4" />
+          <Button variant="link">
             <span>Settings</span>
           </Button>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut className='mr-2 h-4 w-4' />
+          <LogOut className="mr-2 h-4 w-4" />
           <Button
-            variant='ghost'
+            variant="link"
             onClick={() => {
-              dispatch(logout())
-              navigate('/auth/login')
+              dispatch(logout());
+              navigate('/auth/login');
             }}
           >
             <span>Log out</span>
@@ -83,5 +83,5 @@ export function DropdownMenuHeader() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
