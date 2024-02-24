@@ -8,7 +8,6 @@ import rehypeSanitize from 'rehype-sanitize';
 export function PostPage() {
   const { postId } = useParams();
   const { data } = useGetPostByIdQuery(Number(postId));
-  console.log(data?.post.content);
 
   return (
     <div className="grid grid-cols-postLayout gap-4">
