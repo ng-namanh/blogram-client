@@ -2,6 +2,8 @@ import { useGetPostByIdQuery } from '@/entities/post/api/postApi';
 import { formatDate } from '@/shared/lib/formatDate';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
 
 export function PostPage() {
   const { postId } = useParams();
@@ -29,7 +31,10 @@ export function PostPage() {
           </div>
           <h1 className="my-2 text-5xl font-bold ">{data?.post.title}</h1>
         </div>
-        <ReactMarkdown className="whitespace-pre-wrap px-16 py-8">
+        <ReactMarkdown
+          rehypePlugins={[rehypeRaw, rehypeSanitize]}
+          className="whitespace-pre-wrap px-16 py-8"
+        >
           {data?.post.content}
         </ReactMarkdown>
       </main>
