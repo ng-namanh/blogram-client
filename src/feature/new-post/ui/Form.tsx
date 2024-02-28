@@ -12,23 +12,29 @@ import {
 import { FormFieldWrapper } from '@/widgets/authentication';
 import TextEditor from '@/widgets/post/new-post/TextEditor';
 import { useCreatePostMutation } from '@/entities/post/api/postApi';
+import { useRef, useState } from 'react';
+import { useUploadImageMutation } from '@/feature/upload-image/model/api';
 
 export function CreatePostForm() {
+  const [imageUrl, setImageUrl] = useState<string>('');
   const form = useForm<postSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(postSchema),
-    defaultValues: { title: '', content: '' },
+    defaultValues: { title: '', content: '', coverImageUrl: '' },
   });
 
   const [createPost] = useCreatePostMutation();
 
   async function onSubmit(values: postSchemaType) {
+    values.coverImageUrl = imageUrl;
     createPost(values).unwrap();
-    console.log(values);
-
     form.reset();
   }
-
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploadImage] = useUploadImageMutation();
+  const handleButtonClick = () => {
+    fileInputRef.current?.click();
+  };
   return (
     <div className="relative flex h-full flex-col rounded-sm border shadow-sm ">
       <Form {...form}>
@@ -38,6 +44,38 @@ export function CreatePostForm() {
         >
           <ScrollArea className="flex h-full flex-col">
             <div className="h-auto px-16 py-8">
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  className="mb-4 aspect-[1000/420] h-60 w-full rounded-md object-cover"
+                  alt="cover image"
+                />
+              )}
+              <div className="justify-cente flex items-center">
+                <input
+                  type="file"
+                  className="hidden"
+                  ref={fileInputRef}
+                  onChange={async (e) => {
+                    if (e.target.files) {
+                      const response = await uploadImage(e.target.files[0]);
+
+                      if ('data' in response) {
+                        setImageUrl(response.data.coverImageUrl);
+                      }
+                    }
+                  }}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleButtonClick}
+                  className=" rounded px-3 py-1 focus:outline-none"
+                >
+                  Add a cover image
+                </Button>
+              </div>
               <FormFieldWrapper
                 name="title"
                 control={form.control}

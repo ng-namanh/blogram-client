@@ -1,4 +1,4 @@
-import { User } from "@/entities/user/model/types";
+import { User } from '@/entities/user/model/types';
 
 export type Post = {
   id: number;
@@ -7,4 +7,5 @@ export type Post = {
   author: User;
   timestamp: string;
   likes: number;
+  coverImageUrl: string | null;
 };
