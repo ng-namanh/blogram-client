@@ -20,12 +20,13 @@ export function CreatePostForm() {
   const form = useForm<postSchemaType>({
     mode: 'onChange',
     resolver: zodResolver(postSchema),
-    defaultValues: { title: '', content: '' },
+    defaultValues: { title: '', content: '', coverImageUrl: '' },
   });
 
   const [createPost] = useCreatePostMutation();
 
   async function onSubmit(values: postSchemaType) {
+    values.coverImageUrl = imageUrl;
     createPost(values).unwrap();
     form.reset();
   }
@@ -43,7 +44,13 @@ export function CreatePostForm() {
         >
           <ScrollArea className="flex h-full flex-col">
             <div className="h-auto px-16 py-8">
-              {imageUrl && <img src={imageUrl} alt="" />}
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  className="mb-4 aspect-[1000/420] h-60 w-full rounded-md object-cover"
+                  alt="cover image"
+                />
+              )}
               <div className="justify-cente flex items-center">
                 <input
                   type="file"
@@ -52,11 +59,9 @@ export function CreatePostForm() {
                   onChange={async (e) => {
                     if (e.target.files) {
                       const response = await uploadImage(e.target.files[0]);
-                      console.log(response);
 
                       if ('data' in response) {
-                        setImageUrl(response.data.url);
-                        console.log(imageUrl);
+                        setImageUrl(response.data.coverImageUrl);
                       }
                     }
                   }}
